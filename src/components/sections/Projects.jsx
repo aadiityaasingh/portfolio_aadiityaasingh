@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionTemplate, useMotionValue } from "framer-motion";
-import { Github, ExternalLink, Code2, Database, BrainCircuit, ShieldAlert, Users, Network } from "lucide-react";
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { Github, ExternalLink, Database, BrainCircuit, ShieldAlert, Users, Network } from "lucide-react";
 
 const projectsData = [
   {

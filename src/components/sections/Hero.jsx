@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { Github, Linkedin, Download, Code2 } from "lucide-react";
+import { Github, Linkedin, Download} from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
 import TextType from "../shared/TextType";
 

@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Phone, ExternalLink } from "lucide-react";
 import { SiLeetcode } from "react-icons/si";
