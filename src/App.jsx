@@ -1,6 +1,10 @@
 import Hero from "./components/sections/Hero";
 import CustomCursor from "./components/shared/CustomCursor";
 import SliderEngine from "./components/shared/SliderEngine";
+import Skills from "./components/sections/Skills";
+import About from "./components/sections/About";
+import Projects from "./components/sections/Projects";
+import Contact from "./components/sections/Contact";
 
 
 function App() {
@@ -11,13 +15,11 @@ function App() {
       <SliderEngine>
         <Hero/>
 
-        <div className="h-screen flex items-center justify-center text-white text-5xl">
-          Skills
-        </div>
+        <Skills />
 
-        <div className="h-screen flex items-center justify-center text-white text-5xl">
-          About
-        </div>
+        <About />
+        <Projects/>
+        <Contact />
       </SliderEngine>
     </main>
   );
