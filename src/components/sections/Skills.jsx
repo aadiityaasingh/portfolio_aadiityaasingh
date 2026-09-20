@@ -15,26 +15,26 @@ const skillData = [
     icon: <Code2 size={28} />,
     skills: ["JavaScript", "Java", "Python", "SQL"],
     description: "The foundation of logic and scripting.",
-    color: "from-white to-gray-400"
+    color: "from-white to-green-400"
   },
   {
     category: "Web & Backend",
     icon: <Globe size={28} />,
     skills: ["React.js", "Next.js", "Node.js", "Express.js", "FastAPI", "Socket.IO", "RESTful API", "Tailwind"],
     description: "Modern full-stack architecture.",
-    color: "from-gray-200 to-gray-500"
+    color: "from-gray-200 to-blue-500"
   },
   {
-    category: "AI & Vision",
+    category: "Tools & Deployment",
     icon: <Cpu size={28} />,
-    skills: ["TensorFlow", "OpenCV", "YOLOv8", "MediaPipe", "scikit-learn", "NumPy", "Pandas"],
-    description: "Neural networks & computer vision.",
-    color: "from-gray-300 to-gray-600"
+    skills: ["Git", "GitHub", "Docker", "Postman", "Vercel", "NPM", "Render", "Swagger"],
+    description: "Development tools and deployment platforms.",
+    color: "from-gray-300 to-red-500"
   },
   {
     category: "Infrastructure",
     icon: <Layers size={28} />,
-    skills: ["MongoDB", "MySQL", "Redis", "Git", "GitHub", "Docker", "Postman", "Vercel", "NPM", "Render"],
+    skills: ["MongoDB", "Mongoose", "MySQL", "Redis","cloudinary",],
     description: "Deployment, Cloud & CI/CD.",
     color: "from-white to-gray-500"
   }
@@ -127,7 +127,7 @@ const Skills = React.memo(() => {
     >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.03] pointer-events-none overflow-hidden select-none">
         <h2 className="text-[25vw] font-black leading-none uppercase text-white text-center">
-          ENGINE
+          M340i
         </h2>
       </div>
 
