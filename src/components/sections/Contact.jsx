@@ -4,9 +4,7 @@ import { SiLeetcode } from "react-icons/si";
 
 export default function Contact() {
   return (
-    <section 
-      className="relative w-full h-screen pt-24 md:pt-32 px-6 lg:px-20 bg-[#050508] overflow-y-auto overflow-x-hidden scrollable-section [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col items-center"
-    >
+    <section className="relative w-full h-screen pt-24 md:pt-32 px-6 lg:px-20 bg-[#050508] overflow-y-auto overflow-x-hidden scrollable-section [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col items-center">
       {/* Background radial gradient */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
         <div className="w-[800px] h-[800px] bg-white/5 blur-[150px] rounded-full mix-blend-screen" />
@@ -35,7 +33,9 @@ export default function Contact() {
           </h2>
 
           <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-16 font-light leading-relaxed">
-           I am currently seeking opportunities as a Full Stack Engineer or AI/CV Developer. If you have a relevant role or collaboration opportunity, I would be glad to connect and discuss how I can contribute.
+            I am currently seeking opportunities as a Full Stack Developer. If
+            you have a relevant role or collaboration opportunity, I would be
+            glad to connect and discuss how I can contribute.
           </p>
         </motion.div>
 
@@ -47,17 +47,24 @@ export default function Contact() {
           className="flex justify-center"
         >
           <a
-            href="mailto:adityagw20@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=adityasingh.6488@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-4 px-12 py-5 bg-white text-black rounded-full font-bold text-lg overflow-hidden transition-all hover:scale-105 border border-white"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-gray-200 to-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
             <span className="relative z-10 flex items-center gap-3 text-black transition-colors duration-500">
               <Mail size={20} /> Say Hello
             </span>
-            <ExternalLink size={16} className="relative z-10 opacity-50 text-black transition-colors duration-500" />
+
+            <ExternalLink
+              size={16}
+              className="relative z-10 opacity-50 text-black transition-colors duration-500"
+            />
           </a>
         </motion.div>
-        
+
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -65,21 +72,41 @@ export default function Contact() {
           transition={{ duration: 1, delay: 0.5 }}
           className="mt-12 md:mt-20 flex flex-wrap justify-center gap-4 md:gap-6 mb-12 flex-shrink-0"
         >
-          <a href="https://github.com/ADITYA-user18" target="_blank" className="flex items-center gap-3 p-3 md:p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 text-white/70 hover:text-white transition-all group">
-            <Github size={20} className="group-hover:-translate-y-1 transition-transform" />
+          <a
+            href="https://github.com/aadiityaasingh"
+            target="_blank"
+            className="flex items-center gap-3 p-3 md:p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 text-white/70 hover:text-white transition-all group"
+          >
+            <Github
+              size={20}
+              className="group-hover:-translate-y-1 transition-transform"
+            />
             <span className="font-mono text-sm hidden sm:block">GitHub</span>
           </a>
-          <a href="https://www.linkedin.com/in/aditya-wandakar-875007343/" target="_blank" className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 text-white/70 hover:text-white transition-all group">
-            <Linkedin size={20} className="group-hover:-translate-y-1 transition-transform" />
+          <a
+            href="https://www.linkedin.com/in/aadiityaasingh/"
+            target="_blank"
+            className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 text-white/70 hover:text-white transition-all group"
+          >
+            <Linkedin
+              size={20}
+              className="group-hover:-translate-y-1 transition-transform"
+            />
             <span className="font-mono text-sm hidden sm:block">LinkedIn</span>
           </a>
-          <a href="https://leetcode.com/u/AdityaGW/" target="_blank" className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 text-white/70 hover:text-white transition-all group">
+          <a
+            href="https://leetcode.com/u/aadiityaasingh/"
+            target="_blank"
+            className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-white/10 text-white/70 hover:text-white transition-all group"
+          >
             <SiLeetcode className="text-xl group-hover:-translate-y-1 transition-transform" />
             <span className="font-mono text-sm hidden sm:block">LeetCode</span>
           </a>
           <div className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/5 text-white/70 cursor-default">
             <Phone size={20} />
-            <span className="font-mono text-sm hidden sm:block">+91 79750 94214</span>
+            <span className="font-mono text-sm hidden sm:block">
+              +91 9693796600
+            </span>
           </div>
         </motion.div>
       </div>
@@ -87,7 +114,7 @@ export default function Contact() {
       {/* Footer text */}
       <div className="relative text-center w-full z-10 pb-6 mt-auto">
         <p className="text-white/30 text-xs font-mono uppercase tracking-widest px-4">
-          © {new Date().getFullYear()} ADITYA WANDAKAR. All Rights Reserved.
+          © {new Date().getFullYear()} ADITYA SINGH. All Rights Reserved.
         </p>
       </div>
     </section>
