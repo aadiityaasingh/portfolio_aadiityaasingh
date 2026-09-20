@@ -13,64 +13,45 @@ const About = React.memo(function About() {
 
   const experiences = [
     {
-      role: "Computer Vision Intern",
-      company: "DocketRun Tech Pvt. Ltd., Hubli",
-      date: "Jan 26 - July 26",
+      role: "Frontend Developer Intern",
+      company: "RungtaTech, Bhilai",
+      date: "Jan 24 - Jan 25",
       points: [
-        "Developing real-time AI solutions using YOLO & OpenCV for industrial object detection and tracking.",
-        "Implementing model optimization techniques to improve inference speed for large-scale industrial use cases.",
+        "Developed and maintained responsive web interfaces using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and usability.",
+        "Integrated REST APIs and dynamic content with backend services while optimizing frontend rendering to improve application performance and user experience.",
       ],
       icon: <Briefcase className="text-blue-400" size={24} />,
-    },
-    {
-      role: "MERN Stack Developer Intern",
-      company: "Genesis Academy, Bangalore (Remote)",
-      date: "Jan 26 - May 26",
-      points: [
-        "Building full-stack applications using MongoDB, Express, React, and Node.js with secure REST API architectures.",
-        "Developing responsive UIs and implementing robust authentication protocols for enterprise-grade software.",
-      ],
-      icon: <Briefcase className="text-purple-400" size={24} />,
-    },
+    }
   ];
 
   const education = [
     {
-      school: "KLS VDIT, Haliyal",
+      school: "Rungta College of Engineering and Technology, Bhilai",
       degree: "Bachelor of Engineering in Computer Science and Engineering",
-      score: "CGPA: 9.01 / 10.0",
-      date: "2022 – 2026",
+      date: "2023 – 2027",
     },
     {
-      school: "Smt. Vidya P Hanchinmani College, Dharwad",
-      degree: "Pre-University Course (PCMS)",
-      score: "Score: 93%",
+      school: "Guru Gobind Singh Public School, Bokaro Steel City",
+      degree: "12th Grade",
       date: "2020 – 2022",
-    },
-    {
-      school: "St. Mary's School, Kalaghatgi",
-      degree: "Secondary School Leaving Certificate (SSLC)",
-      score: "Score: 90%",
-      date: "2020",
-    },
+    }
   ];
 
   const certifications = [
-    "Free TensorFlow Bootcamp (OpenCV University)",
+    "Introduction to Web Development with ChatGPT",
     "IBM SkillBuild: Full Stack Development (MERN Specialization)",
-    "Green Skills and AI (Edunet Foundation, AICTE, and Shell India)",
-    "Infosys Springboard: Web Technology Fundamentals & JavaScript Optimization",
-    "Cisco Networking Academy: Python Programming Basics",
+    "GitHub Copilot Fundamentals",
+    "Postman - Postman API Fundamentals Student Expert",
   ];
 
   const achievements = [
     {
-      title: "Patent Publication",
-      description: "Crowd Sense: A Real-Time System for Crowd Analytics (App No: 202641002836). Developed an efficient method using MobileNet-SSD and GenderNet for real-time demographic analysis and automated ad selection.",
+      title: "PanchVeda",
+      description: "Built and documented multiple full-stack and backend projects, including REST APIs with authentication, RBAC, validation, database integration, and Swagger API documentation.",
     },
     {
       title: "Problem Solving",
-      description: "Solved 100+ problems on LeetCode focusing on Data Structures and Algorithms (DSA).",
+      description: "Solved 230+ problems on LeetCode focusing on Data Structures and Algorithms (DSA).",
     },
   ];
 
