@@ -80,27 +80,64 @@ const Hero = () => {
       </div>
 
       {/* 2. BACKGROUND IMAGE LAYER */}
-      <div className="absolute inset-0 z-10 w-full h-full pointer-events-none lg:pr-[5%] overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="absolute inset-0 w-full h-full md:w-[65%] md:left-auto md:right-0 opacity-60 md:opacity-100"
-        >
-          <img
-            src="/profile.png"
-            alt="Aditya Singh"
-            className="w-full h-full object-cover object-[center_top] md:object-contain md:object-[80%_bottom] transition-transform duration-1000 hover:scale-[1.02]"
-          />
-        </motion.div>
+      <div className="absolute inset-0 z-10 w-full h-full pointer-events-none overflow-hidden">
+  <motion.div
+    initial={{ opacity: 0, scale: 1.03 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 1.2, ease: "easeOut" }}
+    className="
+      absolute
+      inset-y-0
+      right-0
+      w-full
+      md:w-[58%]
+      lg:w-[55%]
+      h-full
+      flex
+      items-end
+      justify-end
+    "
+  >
+    <img
+      src="/profile.png"
+      alt="Aditya Singh"
+      className="
+        w-full
+        h-full
+        object-cover
+        object-[65%_center]
+        md:object-contain
+        md:object-[70%_bottom]
+        scale-[1.02]
+      "
+    />
+  </motion.div>
 
-        {/* Subtle Dark Gradient Overlay for Text Readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a12] via-[#0a0a12]/80 to-transparent md:bg-gradient-to-r md:from-[#0a0a12] md:via-transparent md:to-transparent" />
-      </div>
+  {/* Gradient to blend image into the dark background */}
+  <div
+    className="
+      absolute inset-0
+      bg-gradient-to-r
+      from-[#0a0a12]
+      via-[#0a0a12]/30
+      to-transparent
+    "
+  />
+
+  {/* Bottom fade */}
+  <div
+    className="
+      absolute inset-x-0 bottom-0 h-32
+      bg-gradient-to-t
+      from-[#0a0a12]
+      to-transparent
+    "
+  />
+</div>
 
       {/* 3. CONTENT LAYER */}
-      <div className="container mx-auto px-6 lg:px-20 relative z-20 h-full flex flex-col justify-end md:justify-center pb-12 pt-32 md:pt-0">
-        <div className="max-w-4xl flex flex-col items-start w-full mt-auto md:mt-0">
+      <div className="container mx-auto px-6 lg:px-20 relative z-20 h-full flex flex-col justify-end md:justify-center pb-12 pt-32 md:pt-0 m-1">
+        <div className="max-w-4xl flex flex-col items-start w-full mt-auto md:mt-0 lg:-translate-x-28">
           {/* Status Badge */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -154,7 +191,7 @@ const Hero = () => {
             className="max-w-xl mt-4 md:-mt-4 lg:-mt-8 relative z-30"
           >
             <p className="text-base md:text-2xl text-gray-300 font-light md:font-normal leading-relaxed mb-6 md:mb-8 drop-shadow-md m-0 p-0 pr-4">
-              <strong className="text-white font-semibold flex text-xl md:text-3xl mb-2">
+              <strong className="text-white font-semibold flex text-xl md:text-3xl mt-10">
                 Full Stack Engineer
               </strong>
               Specializing in MERN stack development, java, and
@@ -170,7 +207,7 @@ const Hero = () => {
                   backgroundColor: "rgba(255,255,255,0.1)",
                 }}
                 whileTap={{ scale: 0.95 }}
-                href=""
+                href="https://drive.google.com/file/d/1jw86mfuIXOOz3qY7TrRheDe8k_eM5yXT/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 md:px-8 py-3 md:py-4 border border-white/20 text-white text-sm md:text-base font-semibold rounded-full backdrop-blur-sm transition-all flex items-center gap-2 bg-white/5 shadow-xl"
