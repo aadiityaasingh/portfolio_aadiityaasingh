@@ -1,99 +1,66 @@
 import React, { useRef } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
-import { Github, ExternalLink, Database, BrainCircuit, ShieldAlert, Users, Network } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  Database,
+  BrainCircuit,
+  ShieldAlert,
+  Users,
+  Network,
+  Activity,
+  BriefcaseBusiness,
+  House,
+} from "lucide-react";
 
 const projectsData = [
   {
-    title: "Railway Track Obstacle Detection System",
-    description: "A highly optimized, computer vision pipeline designed to prevent railway accidents by detecting fallen trees, vehicles, animals, and other obstacles on tracks in real-time.",
-    tech: ["YOLOv11", "Computer Vision", "Python"],
-    github: "https://github.com/ADITYA-user18/-Railway-Track-Obstacle-Detection-System",
-    live: null,
-    icon: <ShieldAlert size={40} className="text-red-400" />,
-    color: "from-red-400 to-orange-600",
-    bgAccent: "bg-red-500/10"
-  },
-  {
-    title: "ResQAI – Offline AI Emergency Assistant",
-    description: "A local-first, privacy-focused AI companion providing critical first-aid and survival instructions offline. Powered by a RAG Knowledge Base, Ollama (TinyLlama/Phi3), and FAISS vector indexing.",
-    tech: ["React", "FastAPI", "Ollama", "FAISS"],
-    github: "https://github.com/ADITYA-user18/ResQAI-Offiline-AI-Emergency-and-Survival-Assistant-",
-    live: null,
-    icon: <ShieldAlert size={40} className="text-emerald-400" />,
+    title: "Panchakarma Management System",
+    description:
+      "A backend management system for managing patients, therapies, treatment plans, sessions, and billing with structured REST APIs and API documentation.",
+    tech: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Swagger"],
+    github: "https://github.com/aadiityaasingh/PanchVeda_backend_system",
+    live: "panchakarma-backend-system.onrender.com/api-docs",
+    icon: <Activity size={40} />,
     color: "from-emerald-400 to-teal-600",
-    bgAccent: "bg-emerald-500/10"
+    bgAccent: "bg-emerald-500/10",
   },
   {
-    title: "AutoYOLO - Neural Intelligence Platform",
-    description: "A production-grade AI optimization and Dataset Intelligence platform. Replaces manual hyperparameter tuning and dataset verification with a deeply integrated Neural Workflow Agent. Features Neural Audit, Dataset Repair, Smart HPO, and Automated Code Generation for Ultralytics YOLO models.",
-    tech: ["Vite", "React", "FastAPI", "Gemini", "Vercel"],
-    github: null,
-    live: "https://intelligent-yolo-analyzer.vercel.app/",
-    icon: <Database size={40} className="text-white" />,
-    color: "from-blue-400 to-indigo-600",
-    bgAccent: "bg-blue-500/10"
-  },
+  title: "HireHorizon",
+  description:
+    "A job portal that allows companies to create profiles and publish job opportunities while providing users with a platform to explore and manage job listings.",
+  tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Vite"],
+  github: "https://github.com/aadiityaasingh/hirehorizon_frontend_system",
+  live: "hirehorizonfrontendsystem.vercel.app",
+  icon: <BriefcaseBusiness size={40} />,
+  color: "from-blue-400 to-cyan-600",
+  bgAccent: "bg-blue-500/10"
+},
   {
-    title: "REV-AI – Autonomous Code Review Agent",
-    description: "Engineered an event-driven automation tool using GitHub Webhooks and Google Gemini AI for real-time logic auditing. Reduced pre-production bug density by 40% by enforcing structured JSON security auditing and vulnerability detection.",
-    tech: ["MERN Stack", "GenAI", "GitHub API"],
-    github: "https://github.com/ADITYA-user18/REV-AI----The-Code-Reviewer",
-    live: "https://rev-ai-the-code-reviewer.vercel.app/",
-    icon: <BrainCircuit size={40} className="text-white" />,
-    color: "from-white to-gray-400",
-    bgAccent: "bg-white/10"
-  },
-  {
-    title: "DigiVault – Intelligent Document Vault",
-    description: "Architected a secure management system featuring automated metadata extraction via Tesseract.js OCR. Implemented robust security protocols including JWT Authentication and IP-based audit logs for document tracking.",
-    tech: ["Full Stack MERN", "OCR", "JWT", "Security"],
-    github: "https://github.com/ADITYA-user18/DigiVault-MERNFullStackProject",
-    live: "https://digi-vault-mern-full-stack-project.vercel.app",
-    icon: <ShieldAlert size={40} className="text-white" />,
-    color: "from-gray-300 to-gray-500",
-    bgAccent: "bg-white/5"
-  },
-  {
-    title: "Chat-AI – AI-Powered Collaborative Workspace",
-    description: "Built a real-time collaborative editor using Socket.IO, enabling multi-user synchronization and code suggestions.",
-    tech: ["React", "Socket.IO", "Gemini API"],
-    github: "https://github.com/ADITYA-user18/AICollaboratoryApp",
-    live: null,
-    icon: <Users size={40} className="text-white/80" />,
-    color: "from-gray-200 to-gray-600",
-    bgAccent: "bg-white/5"
-  },
-  {
-    title: "SAFEGARD-AI – Industrial Safety Monitor",
-    description: "Built a real-time AI safety monitoring system for worker tracking and contextual PPE enforcement. Achieved 91.4% mAP on 30K+ images, integrating a violation analytics dashboard for industrial safety.",
-    tech: ["MERN", "FastAPI", "YOLOv8"],
-    github: "https://github.com/ADITYA-user18/-SAFEGARD-AI-Industrial-Work-at-Height-Safety-Monitor",
-    live: null,
-    icon: <ShieldAlert size={40} className="text-gray-300" />,
-    color: "from-gray-400 to-gray-700",
-    bgAccent: "bg-white/10"
-  },
-  {
-    title: "CrowdSense – Real-Time Crowd Analytics",
-    description: "Achieved 81% detection accuracy using OpenCV for real-time human detection and demographic gender based classification and targeted Advertisements.",
-    tech: ["Python", "OpenCV", "Computer Vision"],
-    github: "https://github.com/ADITYA-user18/CrowdSense-Real-Time-Crowd-Analytics-and-Smart-ADs-Management",
-    live: null,
-    icon: <Network size={40} className="text-gray-200" />,
-    color: "from-white to-gray-500",
-    bgAccent: "bg-white/5"
-  }
+  title: "StaySphere",
+  description:
+    "A full-stack accommodation platform inspired by Airbnb, featuring property listings, user interactions, authentication, and dynamic web interfaces.",
+  tech: ["React.js", "Node.js", "Express.js", "MongoDB"],
+  github: "https://github.com/aadiityaasingh/staySphere",
+  live: "staySphere-virid.vercel.app",
+  icon: <House size={40} />,
+  color: "from-orange-400 to-red-600",
+  bgAccent: "bg-orange-500/10"
+},
 ];
 
 const ProjectCard = React.memo(({ project, index }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const handleMouseMove = React.useCallback(({ currentTarget, clientX, clientY }) => {
-    let { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }, [mouseX, mouseY]);
+  const handleMouseMove = React.useCallback(
+    ({ currentTarget, clientX, clientY }) => {
+      let { left, top } = currentTarget.getBoundingClientRect();
+      mouseX.set(clientX - left);
+      mouseY.set(clientY - top);
+    },
+    [mouseX, mouseY],
+  );
 
   return (
     <motion.div
@@ -120,21 +87,36 @@ const ProjectCard = React.memo(({ project, index }) => {
 
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex justify-between items-start mb-8">
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -5, 0] }} // Gentle floating animation for icons
-            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: index * 0.2 }}
+            transition={{
+              repeat: Infinity,
+              duration: 4,
+              ease: "easeInOut",
+              delay: index * 0.2,
+            }}
             className={`p-4 rounded-2xl ${project.bgAccent} border border-white/5 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-500`}
           >
             {project.icon}
           </motion.div>
           <div className="flex gap-3">
             {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 text-white/50 hover:text-white hover:bg-white/10 transition-all">
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-white/5 text-white/50 hover:text-white hover:bg-white/10 transition-all"
+              >
                 <Github size={20} />
               </a>
             )}
             {project.live && (
-              <a href={project.live} target="_blank" rel="noopener noreferrer" className="p-2.5 rounded-full bg-white/5 text-white/50 hover:text-white hover:bg-white/10 transition-all">
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-white/5 text-white/50 hover:text-white hover:bg-white/10 transition-all"
+              >
                 <ExternalLink size={20} />
               </a>
             )}
@@ -154,15 +136,20 @@ const ProjectCard = React.memo(({ project, index }) => {
         {/* Tech Stack Footer */}
         <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-white/5">
           {project.tech.map((tech, i) => (
-            <span key={i} className="px-3 py-1.5 rounded-lg text-sm font-mono bg-white/5 text-white/90 border border-white/10 group-hover:border-white/20 transition-colors">
+            <span
+              key={i}
+              className="px-3 py-1.5 rounded-lg text-sm font-mono bg-white/5 text-white/90 border border-white/10 group-hover:border-white/20 transition-colors"
+            >
               {tech}
             </span>
           ))}
         </div>
       </div>
-      
+
       {/* Bottom gradient border */}
-      <div className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 bg-gradient-to-r ${project.color}`} />
+      <div
+        className={`absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 bg-gradient-to-r ${project.color}`}
+      />
     </motion.div>
   );
 });
@@ -172,15 +159,15 @@ export default React.memo(function Projects() {
   const sectionRef = useRef(null);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       className="relative w-full h-screen pt-32 pb-20 px-6 lg:px-20 bg-[#000000] overflow-y-auto overflow-x-hidden scrollable-section [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.15] pointer-events-none mix-blend-overlay" />
-      
+
       <div className="relative z-10 max-w-[1400px] mx-auto w-full">
         <div className="mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
