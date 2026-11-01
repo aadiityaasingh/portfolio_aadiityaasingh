@@ -11,7 +11,7 @@ export default defineConfig({
       name: 'force-exit-after-build',
       apply: 'build',
       closeBundle() {
-        setTimeout(() => process.exit(0), 100);
+        process.exit(0);
       },
     },
   ],
