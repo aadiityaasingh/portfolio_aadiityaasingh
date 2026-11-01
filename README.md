@@ -30,7 +30,9 @@ My personal developer portfolio built with **React 19**, **Vite**, **Tailwind CS
 - 🦸 **Hero Section** — Intro with name, role, and animated entrance
 - 🧠 **Skills Section** — MERN stack and dev tools showcase
 - 👤 **About Section** — Background, bio, and personal info
-- 🗂 **Projects Section** — Showcase of built projects
+- 🗂 **Projects Section** — Showcase of built projects, dynamically loaded from MongoDB Atlas
+- 🔐 **Admin Project Dashboard (`/admin`)** — Protected admin portal to add, edit, delete, reorder, and feature projects with live real-time card previews
+- ⚡ **Full MERN Stack & Serverless API** — Integrated Express & Mongoose API seamlessly deployed on Vercel without cold starts
 - 📬 **Contact Section** — Get in touch form/links
 
 ---
