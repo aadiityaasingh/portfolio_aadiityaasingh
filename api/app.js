@@ -3,6 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
 import projectRoutes from "./routes/projects.js";
+import skillRoutes from "./routes/skills.js";
+import experienceRoutes from "./routes/experience.js";
+import certificationRoutes from "./routes/certifications.js";
 
 dotenv.config();
 
@@ -21,6 +24,9 @@ app.get("/api/health", (req, res) => {
 // Mount Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/skills", skillRoutes);
+app.use("/api/experience", experienceRoutes);
+app.use("/api/certifications", certificationRoutes);
 
 // Global Error Handler
 app.use((err, req, res, next) => {

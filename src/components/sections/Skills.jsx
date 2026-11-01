@@ -1,55 +1,63 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { gsap } from "gsap";
-import { 
-  Code2, 
-  Globe, 
-  Cpu, 
-  Layers,
-  Terminal
-} from "lucide-react";
+import { Terminal } from "lucide-react";
+import { getSkills } from "../../utils/api";
+import { renderSkillIcon } from "../../utils/icons";
 
-const skillData = [
+const INITIAL_SKILL_DATA = [
   {
     category: "Languages",
-    icon: <Code2 size={28} />,
+    icon: "Code2",
     skills: ["JavaScript", "Java", "Python", "SQL"],
     description: "The foundation of logic and scripting.",
-    color: "from-white to-green-400"
+    color: "from-white to-green-400",
   },
   {
     category: "Web & Backend",
-    icon: <Globe size={28} />,
-    skills: ["React.js", "Next.js", "Node.js", "Express.js", "FastAPI", "Socket.IO", "RESTful API", "Tailwind"],
+    icon: "Globe",
+    skills: [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "Socket.IO",
+      "RESTful API",
+      "Tailwind",
+    ],
     description: "Modern full-stack architecture.",
-    color: "from-gray-200 to-blue-500"
+    color: "from-gray-200 to-blue-500",
   },
   {
     category: "Tools & Deployment",
-    icon: <Cpu size={28} />,
+    icon: "Cpu",
     skills: ["Git", "GitHub", "Docker", "Postman", "Vercel", "NPM", "Render", "Swagger"],
     description: "Development tools and deployment platforms.",
-    color: "from-gray-300 to-red-500"
+    color: "from-gray-300 to-red-500",
   },
   {
     category: "Infrastructure",
-    icon: <Layers size={28} />,
-    skills: ["MongoDB", "Mongoose", "MySQL", "Redis","cloudinary",],
+    icon: "Layers",
+    skills: ["MongoDB", "Mongoose", "MySQL", "Redis", "cloudinary"],
     description: "Deployment, Cloud & CI/CD.",
-    color: "from-white to-gray-500"
-  }
+    color: "from-white to-gray-500",
+  },
 ];
 
 const SkillCard = React.memo(({ group }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const handleMouseMove = React.useCallback(({ currentTarget, clientX, clientY }) => {
-    if (window.innerWidth <= 768) return;
-    let { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }, [mouseX, mouseY]);
+  const handleMouseMove = React.useCallback(
+    ({ currentTarget, clientX, clientY }) => {
+      if (window.innerWidth <= 768) return;
+      let { left, top } = currentTarget.getBoundingClientRect();
+      mouseX.set(clientX - left);
+      mouseY.set(clientY - top);
+    },
+    [mouseX, mouseY]
+  );
 
   return (
     <motion.div
@@ -71,8 +79,10 @@ const SkillCard = React.memo(({ group }) => {
       />
 
       <div className="relative mb-8 flex justify-between items-start">
-        <div className={`p-4 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:scale-110 group-hover:bg-gradient-to-br ${group.color} transition-all duration-500`}>
-          {group.icon}
+        <div
+          className={`p-4 rounded-2xl bg-white/5 border border-white/10 text-white group-hover:scale-110 group-hover:bg-gradient-to-br ${group.color || "from-white to-green-400"} transition-all duration-500`}
+        >
+          {renderSkillIcon(group.icon, 28)}
         </div>
         <Terminal size={14} className="text-white/20" />
       </div>
@@ -85,20 +95,23 @@ const SkillCard = React.memo(({ group }) => {
           {group.description}
         </p>
 
-        {/* Skill Chips - Sizes Increased Here */}
+        {/* Skill Chips */}
         <div className="flex flex-wrap gap-3">
-          {group.skills.map((skill, i) => (
-            <span
-              key={i}
-              className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-white/90 border border-white/10 group-hover:border-white/30 group-hover:bg-white/10 transition-all duration-300"
-            >
-              {skill}
-            </span>
-          ))}
+          {Array.isArray(group.skills) &&
+            group.skills.map((skill, i) => (
+              <span
+                key={i}
+                className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-white/5 text-white/90 border border-white/10 group-hover:border-white/30 group-hover:bg-white/10 transition-all duration-300"
+              >
+                {skill}
+              </span>
+            ))}
         </div>
       </div>
 
-      <div className={`absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-700 bg-gradient-to-r ${group.color}`} />
+      <div
+        className={`absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-700 bg-gradient-to-r ${group.color || "from-white to-green-400"}`}
+      />
     </motion.div>
   );
 });
@@ -106,6 +119,25 @@ SkillCard.displayName = "SkillCard";
 
 const Skills = React.memo(() => {
   const sectionRef = useRef(null);
+  const [skillGroups, setSkillGroups] = useState(INITIAL_SKILL_DATA);
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchSkills = async () => {
+      try {
+        const res = await getSkills();
+        if (isMounted && res.data && res.data.length > 0) {
+          setSkillGroups(res.data);
+        }
+      } catch (err) {
+        console.warn("Using fallback skill data:", err);
+      }
+    };
+    fetchSkills();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -118,7 +150,7 @@ const Skills = React.memo(() => {
       });
     }, sectionRef);
     return () => ctx.revert();
-  }, []);
+  }, [skillGroups]);
 
   return (
     <section
@@ -142,8 +174,8 @@ const Skills = React.memo(() => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
-          {skillData.map((group, idx) => (
-            <SkillCard key={idx} group={group} />
+          {skillGroups.map((group, idx) => (
+            <SkillCard key={group._id || idx} group={group} />
           ))}
         </div>
       </div>

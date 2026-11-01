@@ -1,6 +1,26 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Briefcase, GraduationCap, Award, MapPin } from "lucide-react";
+import { Briefcase, GraduationCap, Award, MapPin, ExternalLink } from "lucide-react";
+import { getExperiences, getCertifications } from "../../utils/api";
+
+const INITIAL_EXPERIENCES = [
+  {
+    role: "Frontend Developer Intern",
+    company: "RungtaTech, Bhilai",
+    date: "Jan 24 - Jan 25",
+    points: [
+      "Developed and maintained responsive web interfaces using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and usability.",
+      "Integrated REST APIs and dynamic content with backend services while optimizing frontend rendering to improve application performance and user experience.",
+    ],
+  },
+];
+
+const INITIAL_CERTIFICATIONS = [
+  { title: "Introduction to Web Development with ChatGPT" },
+  { title: "IBM SkillBuild: Full Stack Development (MERN Specialization)", issuer: "IBM" },
+  { title: "GitHub Copilot Fundamentals", issuer: "GitHub" },
+  { title: "Postman - Postman API Fundamentals Student Expert", issuer: "Postman" },
+];
 
 const About = React.memo(function About() {
   const containerRef = useRef(null);
@@ -11,18 +31,34 @@ const About = React.memo(function About() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
-  const experiences = [
-    {
-      role: "Frontend Developer Intern",
-      company: "RungtaTech, Bhilai",
-      date: "Jan 24 - Jan 25",
-      points: [
-        "Developed and maintained responsive web interfaces using HTML, CSS, and JavaScript, ensuring cross-browser compatibility and usability.",
-        "Integrated REST APIs and dynamic content with backend services while optimizing frontend rendering to improve application performance and user experience.",
-      ],
-      icon: <Briefcase className="text-blue-400" size={24} />,
-    }
-  ];
+  const [experiences, setExperiences] = useState(INITIAL_EXPERIENCES);
+  const [certifications, setCertifications] = useState(INITIAL_CERTIFICATIONS);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    // Fetch experiences
+    getExperiences()
+      .then((res) => {
+        if (isMounted && res.data && res.data.length > 0) {
+          setExperiences(res.data);
+        }
+      })
+      .catch((err) => console.warn("Using fallback experience data:", err));
+
+    // Fetch certifications
+    getCertifications()
+      .then((res) => {
+        if (isMounted && res.data && res.data.length > 0) {
+          setCertifications(res.data);
+        }
+      })
+      .catch((err) => console.warn("Using fallback certifications data:", err));
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const education = [
     {
@@ -34,20 +70,14 @@ const About = React.memo(function About() {
       school: "Guru Gobind Singh Public School, Bokaro Steel City",
       degree: "12th Grade",
       date: "2020 – 2022",
-    }
-  ];
-
-  const certifications = [
-    "Introduction to Web Development with ChatGPT",
-    "IBM SkillBuild: Full Stack Development (MERN Specialization)",
-    "GitHub Copilot Fundamentals",
-    "Postman - Postman API Fundamentals Student Expert",
+    },
   ];
 
   const achievements = [
     {
       title: "PanchVeda",
-      description: "Built and documented multiple full-stack and backend projects, including REST APIs with authentication, RBAC, validation, database integration, and Swagger API documentation.",
+      description:
+        "Built and documented multiple full-stack and backend projects, including REST APIs with authentication, RBAC, validation, database integration, and Swagger API documentation.",
     },
     {
       title: "Problem Solving",
@@ -56,7 +86,7 @@ const About = React.memo(function About() {
   ];
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative h-screen pt-32 pb-20 px-6 lg:px-20 bg-[#0a0a12] overflow-y-auto overflow-x-hidden scrollable-section [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
     >
@@ -75,14 +105,17 @@ const About = React.memo(function About() {
             </span>
           </h2>
           <p className="max-w-3xl text-xl text-white/90 font-light leading-relaxed">
-            Innovative <strong className="text-white font-medium">Computer Science Engineer</strong> specialized in <strong className="text-gray-300 font-medium">MERN Stack development</strong> and <strong className="text-gray-300 font-medium">Generative AI</strong> integration. Proven ability to translate industrial requirements into secure, high-performance software with a focus on System Performance and user-centric design.
+            Innovative <strong className="text-white font-medium">Computer Science Engineer</strong>{" "}
+            specialized in <strong className="text-gray-300 font-medium">MERN Stack development</strong>{" "}
+            and <strong className="text-gray-300 font-medium">Generative AI</strong> integration. Proven
+            ability to translate industrial requirements into secure, high-performance software with a
+            focus on System Performance and user-centric design.
           </p>
         </motion.div>
 
         <div className="flex flex-col gap-24">
-          
           {/* Section 1: Experience */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -92,10 +125,13 @@ const About = React.memo(function About() {
             <h3 className="text-3xl font-outfit font-bold text-white mb-10 flex items-center gap-3 border-b border-white/10 pb-4">
               <Briefcase className="text-white/50" /> Professional Experience
             </h3>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {experiences.map((exp, idx) => (
-                <div key={idx} className="relative group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/30 transition-all hover:bg-white/10">
+                <div
+                  key={exp._id || idx}
+                  className="relative group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/30 transition-all hover:bg-white/10"
+                >
                   <div className="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
                     <div>
                       <h4 className="text-2xl font-outfit text-white font-bold mb-2">{exp.role}</h4>
@@ -103,15 +139,18 @@ const About = React.memo(function About() {
                         <MapPin size={16} className="text-white/50" /> {exp.company}
                       </p>
                     </div>
-                    <span className="text-sm font-mono text-white/80 mt-1 md:mt-0 bg-white/10 border border-white/10 px-4 py-1.5 rounded-full whitespace-nowrap">{exp.date}</span>
+                    <span className="text-sm font-mono text-white/80 mt-1 md:mt-0 bg-white/10 border border-white/10 px-4 py-1.5 rounded-full whitespace-nowrap">
+                      {exp.date}
+                    </span>
                   </div>
-                  
+
                   <ul className="space-y-4">
-                    {exp.points.map((point, i) => (
-                      <li key={i} className="text-white/70 text-base leading-relaxed flex items-start gap-3">
-                        <span className="text-white/40 mt-1">▹</span> {point}
-                      </li>
-                    ))}
+                    {Array.isArray(exp.points) &&
+                      exp.points.map((point, i) => (
+                        <li key={i} className="text-white/70 text-base leading-relaxed flex items-start gap-3">
+                          <span className="text-white/40 mt-1">▹</span> {point}
+                        </li>
+                      ))}
                   </ul>
                 </div>
               ))}
@@ -129,16 +168,18 @@ const About = React.memo(function About() {
             <h3 className="text-3xl font-outfit font-bold text-white mb-10 flex items-center gap-3 border-b border-white/10 pb-4">
               <GraduationCap className="text-white/50" /> Education
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {education.map((edu, idx) => (
-                <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/[0.07] transition-all flex flex-col justify-between">
+                <div
+                  key={idx}
+                  className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/[0.07] transition-all flex flex-col justify-between"
+                >
                   <div>
                     <h4 className="text-xl font-outfit text-white font-bold mb-4">{edu.degree}</h4>
                     <p className="text-white/80 text-base mb-6 font-medium">{edu.school}</p>
                   </div>
                   <div className="flex flex-col xl:flex-row justify-between xl:items-center text-sm text-white/60 font-mono gap-4 pt-6 border-t border-white/5">
-                    <span className="bg-white/10 px-3 py-1.5 rounded border border-white/5 font-bold tracking-wide text-white">{edu.score}</span>
                     <span>{edu.date}</span>
                   </div>
                 </div>
@@ -157,14 +198,54 @@ const About = React.memo(function About() {
             <h3 className="text-3xl font-outfit font-bold text-white mb-10 flex items-center gap-3 border-b border-white/10 pb-4">
               <Award className="text-white/50" /> Certifications
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {certifications.map((cert, idx) => (
-                <div key={idx} className="group flex items-start gap-4 p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all">
-                  <Award size={24} className="text-white/30 group-hover:text-white shrink-0 mt-0.5 transition-colors" />
-                  <span className="text-white/90 text-base leading-relaxed">{cert}</span>
-                </div>
-              ))}
+              {certifications.map((cert, idx) => {
+                const title = typeof cert === "string" ? cert : cert.title;
+                const issuer = typeof cert === "object" ? cert.issuer : null;
+                const credentialUrl = typeof cert === "object" ? cert.credentialUrl : null;
+
+                const CardContent = (
+                  <div className="group flex items-start justify-between gap-4 p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all w-full h-full">
+                    <div className="flex items-start gap-4">
+                      <Award
+                        size={24}
+                        className="text-white/30 group-hover:text-white shrink-0 mt-0.5 transition-colors"
+                      />
+                      <div>
+                        <span className="text-white/90 text-base leading-relaxed block font-medium">
+                          {title}
+                        </span>
+                        {issuer && (
+                          <span className="text-xs font-mono text-white/50 mt-1 block">
+                            Issued by {issuer}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    {credentialUrl && (
+                      <ExternalLink
+                        size={16}
+                        className="text-white/30 group-hover:text-blue-400 shrink-0 mt-1 transition-colors"
+                      />
+                    )}
+                  </div>
+                );
+
+                return credentialUrl ? (
+                  <a
+                    key={cert._id || idx}
+                    href={credentialUrl.startsWith("http") ? credentialUrl : `https://${credentialUrl}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    {CardContent}
+                  </a>
+                ) : (
+                  <div key={cert._id || idx}>{CardContent}</div>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -179,17 +260,19 @@ const About = React.memo(function About() {
             <h3 className="text-3xl font-outfit font-bold text-white mb-10 flex items-center gap-3 border-b border-white/10 pb-4">
               <Award className="text-white/50" /> Achievements
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {achievements.map((ach, idx) => (
-                <div key={idx} className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/[0.07] transition-all">
+                <div
+                  key={idx}
+                  className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/[0.07] transition-all"
+                >
                   <h4 className="text-xl font-outfit text-white font-bold mb-4">{ach.title}</h4>
                   <p className="text-white/80 text-base leading-relaxed">{ach.description}</p>
                 </div>
               ))}
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

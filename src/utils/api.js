@@ -60,6 +60,84 @@ export const reorderProjects = async (orderedIds) => {
   return res.data;
 };
 
+// Skill Category methods
+export const getSkills = async () => {
+  const res = await api.get("/api/skills");
+  return res.data;
+};
+
+export const createSkill = async (skillData) => {
+  const res = await api.post("/api/skills", skillData);
+  return res.data;
+};
+
+export const updateSkill = async (id, skillData) => {
+  const res = await api.put(`/api/skills/${id}`, skillData);
+  return res.data;
+};
+
+export const deleteSkill = async (id) => {
+  const res = await api.delete(`/api/skills/${id}`);
+  return res.data;
+};
+
+export const reorderSkills = async (orderedIds) => {
+  const res = await api.patch("/api/skills/reorder", { orderedIds });
+  return res.data;
+};
+
+// Experience methods
+export const getExperiences = async () => {
+  const res = await api.get("/api/experience");
+  return res.data;
+};
+
+export const createExperience = async (experienceData) => {
+  const res = await api.post("/api/experience", experienceData);
+  return res.data;
+};
+
+export const updateExperience = async (id, experienceData) => {
+  const res = await api.put(`/api/experience/${id}`, experienceData);
+  return res.data;
+};
+
+export const deleteExperience = async (id) => {
+  const res = await api.delete(`/api/experience/${id}`);
+  return res.data;
+};
+
+export const reorderExperiences = async (orderedIds) => {
+  const res = await api.patch("/api/experience/reorder", { orderedIds });
+  return res.data;
+};
+
+// Certification methods
+export const getCertifications = async () => {
+  const res = await api.get("/api/certifications");
+  return res.data;
+};
+
+export const createCertification = async (certData) => {
+  const res = await api.post("/api/certifications", certData);
+  return res.data;
+};
+
+export const updateCertification = async (id, certData) => {
+  const res = await api.put(`/api/certifications/${id}`, certData);
+  return res.data;
+};
+
+export const deleteCertification = async (id) => {
+  const res = await api.delete(`/api/certifications/${id}`);
+  return res.data;
+};
+
+export const reorderCertifications = async (orderedIds) => {
+  const res = await api.patch("/api/certifications/reorder", { orderedIds });
+  return res.data;
+};
+
 export const loginAdmin = async (email, password) => {
   const res = await api.post("/api/auth/login", { email, password });
   return res.data;
