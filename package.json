@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "server": "node api/server.js",
+    "server": "node local-server.js",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
