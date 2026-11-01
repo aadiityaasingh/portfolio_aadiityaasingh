@@ -4,7 +4,21 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: 'force-exit-after-build',
+      apply: 'build',
+      closeBundle() {
+        setTimeout(() => process.exit(0), 100);
+      },
+    },
+  ],
+  build: {
+    reportCompressedSize: false,
+    chunkSizeWarningLimit: 1000,
+  },
   server: {
     proxy: {
       '/api': {
