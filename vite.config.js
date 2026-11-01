@@ -17,7 +17,7 @@ export default defineConfig({
   ],
   build: {
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 2000,
   },
   server: {
     proxy: {
